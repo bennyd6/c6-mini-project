@@ -72,7 +72,6 @@ export default function Navbar() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [dropdownVisible]);
-
     return (
         <div className="nav-main">
             <a href="/"><img src={Logo} alt="Logo" /></a>
