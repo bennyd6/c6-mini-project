@@ -1,6 +1,6 @@
 .nav-main {
     width: 90vw;
-    height: 100px;
+    height: 80px;
     border-radius: 50px;
     display: flex;
     flex-direction: row;
@@ -11,15 +11,26 @@
     top: 5%;
     left: 50%;
     transform: translateX(-50%);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
     z-index: 100;
+    transition: all 0.3s ease-in-out;
 }
+
+.nav-scrolled {
+    top: 0 !important;
+    border-radius: 0px;
+    width: 100vw;
+    left: 0;
+    transform: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 16px;
+}
+
+
 
 .nav-main img {
     width: 100px;
 }
 
-/* Default link styles */
 .nav-main a {
     text-decoration: none;
     color: black;
@@ -30,7 +41,6 @@
     transition: all 0.3s ease;
 }
 
-/* Underline animation */
 .nav-main a::after {
     content: '';
     position: absolute;
@@ -42,7 +52,6 @@
     transition: width 0.3s ease;
 }
 
-/* Hover effect */
 .nav-main a:hover {
     transform: translateY(-5px);
 }
@@ -51,14 +60,12 @@
     width: 100%;
 }
 
-/* Active link styling */
 .active-link {
     color: #007bff !important;  /* Blue color for active link */
     font-weight: bold;
     position: relative;
 }
 
-/* Active link underline */
 .active-link::after {
     content: '';
     position: absolute;
@@ -69,7 +76,6 @@
     background-color: #007bff;  /* Match the active color */
 }
 
-/* User dropdown */
 .user-dropdown {
     position: relative;
     cursor: pointer;
@@ -85,7 +91,6 @@
     background-color: #f0f0f0;
 }
 
-/* Dropdown menu */
 .dropdown-menu {
     position: absolute;
     top: 100%;

@@ -6,8 +6,9 @@ import Logo from '../assets/emisor.png';
 export default function Navbar() {
     const [userName, setUserName] = useState('');
     const [dropdownVisible, setDropdownVisible] = useState(false);
-    const dropdownRef = useRef(null); // Reference for detecting outside clicks
-    const location = useLocation(); // Get the current route
+    const [scrolled, setScrolled] = useState(false);
+    const dropdownRef = useRef(null);
+    const location = useLocation();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -22,27 +23,45 @@ export default function Navbar() {
                         }
                     });
 
-                    if (!response.ok) {
-                        console.error('Failed to fetch user:', response.statusText);
-                        return;
-                    }
-
                     const data = await response.json();
-                    if (!data) {
-                        console.error('Empty response data received');
-                        return;
-                    }
-
-                    setUserName(data);
+                    setUserName(data || 'User');
                 } catch (error) {
                     console.error('Error fetching user:', error);
                 }
-            } else {
-                console.log('No token found in localStorage');
             }
         };
 
         fetchUser();
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const toggleDropdown = () => {
+        setDropdownVisible(!dropdownVisible);
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownVisible(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
     }, []);
 
     const handleLogout = () => {
@@ -50,33 +69,11 @@ export default function Navbar() {
         window.location.href = '/login';
     };
 
-    const toggleDropdown = () => {
-        setDropdownVisible((prev) => !prev); // Toggle dropdown visibility
-    };
-
-    // Close dropdown when clicking outside
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setDropdownVisible(false);
-            }
-        }
-
-        if (dropdownVisible) {
-            document.addEventListener("mousedown", handleClickOutside);
-        } else {
-            document.removeEventListener("mousedown", handleClickOutside);
-        }
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [dropdownVisible]);
     return (
-        <div className="nav-main">
+        <div className={`nav-main ${scrolled ? 'nav-scrolled' : ''}`}>
             <a href="/"><img src={Logo} alt="Logo" /></a>
+            <a href="/">Home</a>
             <Link to="/dashboard" className={location.pathname === "/dashboard" ? "active-link" : ""}>Dashboard</Link>
-            {/* <Link to="/analyze" className={location.pathname === "/analyze" ? "active-link" : ""}>Analyze</Link> */}
             <Link to="/about" className={location.pathname === "/about" ? "active-link" : ""}>About Us</Link>
 
             <div className="user-dropdown" onClick={toggleDropdown} ref={dropdownRef}>
