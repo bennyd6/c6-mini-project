@@ -21,14 +21,6 @@ export default function Home(){
                         </div>
                     </div>
                 </div>
-                <div className="suggestion">
-                    <h1>Wanna organize an event with Emisor?</h1>
-                    <div className="media-outer">
-                        <div className="media-object">
-                            <h1><a href="">  Click Here!</a></h1>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         </>

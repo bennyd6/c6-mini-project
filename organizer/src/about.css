@@ -1,0 +1,53 @@
+.about-main{
+    width: 100vw;
+    min-height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.a-c{
+    width: 80%;
+    height: 70vh;
+    border-radius: 20px;
+    background: linear-gradient(45deg, red, yellow, green, rgb(160, 160, 251), #FFB37C, white);
+    background-size: 400% 400%;
+    animation: gradientChange 3s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 15px;
+}
+
+.a-c-in-1{
+    width: 98%;
+    height: 20%;
+    border-radius: 17px;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.a-c-in-1 h1{
+    color: white;
+}
+
+.a-c-in{
+    width: 98%;
+    height: 70%;
+    background-color: black;
+    border-radius: 17px;
+}
+
+.a-c-in p{
+    padding: 20px;
+    color: white;
+    font-size: x-large;
+    text-align: justify;
+}

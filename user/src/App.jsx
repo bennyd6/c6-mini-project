@@ -6,6 +6,7 @@ import Signup from './components/signup';
 import Login from './components/login';
 import Dashboard from './dashboard';
 import Chatbot from './components/chatbot';
+import About from './about';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/chat" element={<Chatbot />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<h1>Page Not Found</h1>} />
       </Routes>
     </>
