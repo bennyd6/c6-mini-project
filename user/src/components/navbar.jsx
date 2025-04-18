@@ -19,17 +19,17 @@ export default function Navbar() {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
+                            'auth-token': token
                         }
                     });
-
+        
                     const data = await response.json();
-                    setUserName(data || 'User');
+                    setUserName(data.name || 'User');
                 } catch (error) {
                     console.error('Error fetching user:', error);
                 }
             }
-        };
+        };        
 
         fetchUser();
     }, []);
@@ -72,7 +72,7 @@ export default function Navbar() {
     return (
         <div className={`nav-main ${scrolled ? 'nav-scrolled' : ''}`}>
             <a href="/"><img src={Logo} alt="Logo" /></a>
-            <a href="/">Home</a>
+            <a href="/" className={location.pathname === "/" ? "active-link" : ""}>Home</a>
             <Link to="/dashboard" className={location.pathname === "/dashboard" ? "active-link" : ""}>Dashboard</Link>
             <Link to="/about" className={location.pathname === "/about" ? "active-link" : ""}>About Us</Link>
 

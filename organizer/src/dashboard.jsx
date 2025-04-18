@@ -16,7 +16,69 @@ export default function Dashboard() {
         </div>
       </div>
       <div className="dashboard-2">
+          <h1>Your Upcoming Events</h1>
+        <div className="upcoming">
+          <EventCard
+            image="https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"
+            eventName="Electric Carnival Night"
+            hostedBy="Pulse Entertainment"
+            date="2025-07-12T21:00:00"
+            venue="Skyline Arena, NYC"
+            onBookNow={() => alert('Booking started!')}
+            />
+          <EventCard
+            image="https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"
+            eventName="Electric Carnival Night"
+            hostedBy="Pulse Entertainment"
+            date="2025-07-12T21:00:00"
+            venue="Skyline Arena, NYC"
+            onBookNow={() => alert('Booking started!')}
+            />
+          <EventCard
+            image="https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"
+            eventName="Electric Carnival Night"
+            hostedBy="Pulse Entertainment"
+            date="2025-07-12T21:00:00"
+            venue="Skyline Arena, NYC"
+            onBookNow={() => alert('Booking started!')}
+            />
+          <EventCard
+            image="https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"
+            eventName="Electric Carnival Night"
+            hostedBy="Pulse Entertainment"
+            date="2025-07-12T21:00:00"
+            venue="Skyline Arena, NYC"
+            onBookNow={() => alert('Booking started!')}
+            />
+        </div>
+        <h1>Your Past Events</h1>
+        <div className="past">
+          <EventCard
+            image="https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"
+            eventName="Electric Carnival Night"
+            hostedBy="Pulse Entertainment"
+            date="2025-07-12T21:00:00"
+            venue="Skyline Arena, NYC"
+            onBookNow={() => alert('Booking started!')}
+            />
+          <EventCard
+            image="https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"
+            eventName="Electric Carnival Night"
+            hostedBy="Pulse Entertainment"
+            date="2025-07-12T21:00:00"
+            venue="Skyline Arena, NYC"
+            onBookNow={() => alert('Booking started!')}
+            />
+          <EventCard
+            image="https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"
+            eventName="Electric Carnival Night"
+            hostedBy="Pulse Entertainment"
+            date="2025-07-12T21:00:00"
+            venue="Skyline Arena, NYC"
+            onBookNow={() => alert('Booking started!')}
+            />
 
+        </div>
       </div>
     </div>
     </>

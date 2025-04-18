@@ -1,60 +1,49 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './login.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import './login.css'; // Import the CSS file
 
-export default function Login() {
-    const [credentials, setCredentials] = useState({ email: '', password: '' });
-    const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
+const Login = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
-    const handleChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    };
+  const { email, password } = formData;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-        // Simple frontend-only validation
-        if (credentials.email.trim() && credentials.password.trim()) {
-            alert('Login successful!');
-            localStorage.setItem('token', 'demo-token'); // Optional simulation
-            navigate('/'); // Redirect after login
-        } else {
-            alert('Please fill in both email and password.');
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:3000/api/auth/login', formData);
+      const { authtoken } = res.data;
 
-    return (
-        <div className="login-main">
-            <div className="login-main-two">
-                <div className="login-card">
-                    <h2>Login</h2>
-                    <form className='login-form' onSubmit={handleSubmit}>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder='Enter your email'
-                            onChange={handleChange}
-                            required
-                            className='id-and-pass'
-                        />
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            name="password"
-                            placeholder='Enter your password'
-                            onChange={handleChange}
-                            required
-                            className='id-and-pass'
-                        />
-                        <div className="show-pass">
-                            <input type="checkbox" onChange={() => setShowPassword(!showPassword)} />
-                            <p>Show Password?</p>
-                        </div>
-                        <button className='login-button' type="submit">Login</button>
-                    </form>
-                    <p><a href="/signup" className="signup-link">Don't have an account?</a></p>
-                </div>
-            </div>
-        </div>
-    );
-}
+      // ✅ Save token
+      localStorage.setItem('token', authtoken);
+
+      // ✅ Redirect on success
+      window.location.href = '/';
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+      // Optionally show error to user
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <h2 className="login-title">Login</h2>
+      <form onSubmit={handleSubmit} className="login-form">
+        <input type="email" name="email" placeholder="Email" value={email} onChange={handleChange} required />
+        <input type="password" name="password" placeholder="Password" value={password} onChange={handleChange} required />
+        <button type="submit" className="login-button">Login</button>
+      </form>
+      <p className="signup-link">
+        Don't have an account? <a href="/signup">Sign up</a>
+      </p>
+    </div>
+  );
+};
+
+export default Login;

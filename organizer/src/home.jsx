@@ -21,6 +21,14 @@ export default function Home(){
                         </div>
                     </div>
                 </div>
+            <div className="suggestion">
+                <h1>Wanna book tickets with Emisor?</h1>
+                <div className="media-outer">
+                    <div className="object">
+                        <h1><a href="">  Click Here!</a></h1>
+                    </div>
+                </div>  
+            </div>
             </div>
         </div>
         </>

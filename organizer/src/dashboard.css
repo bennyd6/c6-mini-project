@@ -19,10 +19,14 @@
 
 .dashboard-2{
   width: 100%;
-  height: 80vh;
+  min-height: 80vh;
   background-color: white;
   border-top-right-radius: 100px;
   border-top-left-radius: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .media-object {
@@ -108,4 +112,33 @@
 .add a{
   text-decoration: none;
   color: white;
+}
+
+
+.upcoming{
+  width: 100%;
+  min-height: 50vh;
+  /* background-color: #434343; */
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 40px;
+  /* background-color: #f5f5f5; */
+  justify-content: center;
+}
+
+.past{
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 40px;
+  /* background-color: #f5f5f5; */
+  justify-content: center;
 }

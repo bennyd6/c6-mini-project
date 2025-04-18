@@ -72,6 +72,7 @@ export default function Navbar() {
     return (
         <div className={`nav-main ${scrolled ? 'nav-scrolled' : ''}`}>
             <a href="/"><img src={Logo} alt="Logo" /></a>
+            <a href="/" className={location.pathname === "/" ? "active-link" : ""}>Home</a>
             <Link to="/dashboard" className={location.pathname === "/dashboard" ? "active-link" : ""}>Dashboard</Link>
             <Link to="/about" className={location.pathname === "/about" ? "active-link" : ""}>About Us</Link>
 

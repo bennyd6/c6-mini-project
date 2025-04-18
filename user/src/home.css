@@ -111,7 +111,7 @@
 }
 
 .home-1 p{
-    font-size: 20px;
+    font-size: 30px;
     margin-top: -50px;
 }
 
@@ -120,6 +120,7 @@
     border-radius: 20px;
     padding: 5px;
 }
+
 
 
 .suggestion{
@@ -147,6 +148,7 @@
 
 .media-outer{
     background: linear-gradient(45deg, black, white);
+    background: linear-gradient(45deg, red, yellow, green, rgb(160, 160, 251), #FFB37C);
     background-size: 400% 400%;
     animation: gradientChange 3s ease infinite;
     width: 230px;
