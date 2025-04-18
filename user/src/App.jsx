@@ -6,7 +6,7 @@ import Login from './components/login';
 import Dashboard from './dashboard';
 import Chatbot from './components/chatbot';
 import About from './about';
-import './app.css'
+import './App.css'
 
 // ✅ Private Route Wrapper
 const PrivateRoute = ({ children }) => {
