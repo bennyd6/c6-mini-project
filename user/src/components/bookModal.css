@@ -45,3 +45,22 @@
     cursor: pointer;
   }
   
+
+  .modal-content input {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.modal-content select,
+.modal-content input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

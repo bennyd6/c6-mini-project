@@ -8,7 +8,9 @@ const eventSchema = new mongoose.Schema({
   totalTickets: { type: Number, required: true },
   availableTickets: { type: Number, required: true },
   organizerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Organizer', required: true },
+  image: { type: String },
   createdAt: { type: Date, default: Date.now }
 });
+
 
 module.exports = mongoose.model('Event', eventSchema);

@@ -1,6 +1,6 @@
 import './home.css'
 import vec from './assets/calendar.png'
-
+ 
 export default function Home(){
     return(
         <>

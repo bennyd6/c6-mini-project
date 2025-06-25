@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const EventCard = ({ image, eventName, hostedBy, date, venue, onBookNow }) => {
   return (
-    <Card>
+    <Card >
       <EventImage src={image} alt={eventName} />
       <CardContent>
         <EventName>{eventName}</EventName>

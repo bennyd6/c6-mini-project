@@ -4,70 +4,69 @@ import './navbar.css';
 import Logo from '../assets/emisor.png';
 
 export default function Navbar() {
-    const [userName, setUserName] = useState('');
+    const [userName, setUserName] = useState('Loading...');
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const dropdownRef = useRef(null);
     const location = useLocation();
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                try {
-                    const response = await fetch('http://localhost:3000/api/auth/getuser', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
+    const fetchUser = async () => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                const response = await fetch('http://localhost:3000/api/organizer/getorganizer', {
+                    method: 'GET', // changed to GET
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'auth-token': token
+                    }
+                });
 
-                    const data = await response.json();
-                    setUserName(data || 'User');
-                } catch (error) {
-                    console.error('Error fetching user:', error);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user');
                 }
-            }
-        };
 
+                const data = await response.json();
+                setUserName(data.name || 'User'); // ensure that data.name exists
+            } catch (error) {
+                console.error('Error fetching user:', error);
+                setUserName('Error fetching user');
+            }
+        } else {
+            setUserName('User');
+        }
+    };
+
+    useEffect(() => {
         fetchUser();
     }, []);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
+            setScrolled(window.scrollY > 50);
         };
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleDropdown = () => {
-        setDropdownVisible(!dropdownVisible);
-    };
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setDropdownVisible(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
+    const toggleDropdown = () => setDropdownVisible(!dropdownVisible);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
         window.location.href = '/login';
     };
+
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setDropdownVisible(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
         <div className={`nav-main ${scrolled ? 'nav-scrolled' : ''}`}>
@@ -77,7 +76,7 @@ export default function Navbar() {
             <Link to="/about" className={location.pathname === "/about" ? "active-link" : ""}>About Us</Link>
 
             <div className="user-dropdown" onClick={toggleDropdown} ref={dropdownRef}>
-                <span>{userName || "Loading..."}</span>
+                <span>{userName}</span>
                 {dropdownVisible && (
                     <div className="dropdown-menu">
                         <button className="dropdown-btn" onClick={handleLogout}>Logout</button>

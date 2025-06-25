@@ -87,7 +87,7 @@ export default function Dashboard() {
           tickets.map((ticket, index) => (
             <TicketCard
               key={index}
-              image="https://images.jdmagicbox.com/comp/ahmedabad/k7/079pxx79.xx79.171223193231.m6k7/catalogue/dg-event-in-dj-light-sound-company-maninagar-ahmedabad-disc-jockey-1nxybqrxzg.jpg"
+              image={ticket.eventId.imageUrl || "https://images.jdmagicbox.com/comp/ahmedabad/k7/079pxx79.xx79.171223193231.m6k7/catalogue/dg-event-in-dj-light-sound-company-maninagar-ahmedabad-disc-jockey-1nxybqrxzg.jpg"}
               eventName={ticket.eventId.title}
               status="Live"
               date={ticket.eventId.date}
@@ -107,7 +107,7 @@ export default function Dashboard() {
             events.map((event, index) => (
               <EventCard
                 key={index}
-                image={event.image || "https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"}
+                image={event.imageUrl || "https://kzuu.org/wp-content/uploads/2019/10/electric-daisy-carnival-2019.png"}
                 eventName={event.title}
                 hostedBy={event.organizerId?.name || "Unknown"}
                 date={event.date}
